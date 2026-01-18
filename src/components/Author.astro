@@ -1,0 +1,14 @@
+---
+import type { AuthorProps } from "../types";
+
+const props = Astro.props as AuthorProps;
+const { avatar, name, time } = props;
+---
+
+<div>
+  <img src={avatar} alt={name} />
+  <div>
+    <p>{name}</p>
+    <p>{time}</p>
+  </div>
+</div>

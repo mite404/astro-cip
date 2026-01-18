@@ -1,13 +1,30 @@
 ---
 import Card from "../components/Card.astro";
-import Welcome from "../components/Welcome.astro";
+import Button from "../components/Button.astro";
 import Layout from "../layouts/Layout.astro";
 import data from "../data/data.json";
 ---
 
-<Layout title="ass man">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Components</title>
+  </head>
   <body>
-    {data.map((card) => <Card data={card} />)}
+    <h1>Astro Components</h1>
+    <Button id="my-id2" aria-label="click me btn">Btn Text</Button>
   </body>
-  <!-- <Welcome /> -->
-</Layout>
+  <style>
+    @import "https://unpkg.com/open-props";
+    @import "https://unpkg.com/open-props/normalize.min.css";
+    body {
+      display: grid;
+      place-content: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+  </style>
+</html>
