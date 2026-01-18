@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import balloon from "../../public/imgs/balloon.jpg";
+const { data }: Props = Astro.props;
+
+interface CardData {
+  author: {
+    name: string;
+    avatar: string;
+  };
+  title: string;
+  description: string;
+  category: string;
+  hero: string;
+  time: string;
+}
+
+interface Props {
+  data: CardData;
+}
+---
+
+<div class="card-container">
+  <div
+    class="w-[425px] h-[575px] rounded-br-4xl rounded-bl-sm rounded-tl-sm rounded-tr-sm bg-zinc-600 overflow-hidden"
+  >
+    <div class="hero-image-container">
+      <Image
+        src={balloon}
+        alt=""
+        width="499"
+        height="338"
+        fetchpriority={"high"}
+        class="image"
+      />
+    </div>
+    <h1>{data.title}</h1>
+    <h3>{data.author.name}</h3>
+    <p>{data.description}</p>
+  </div>
+</div>
+
+<style>
+  .card-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-image-container {
+    width: 425px;
+    height: 263px;
+    overflow: hidden;
+  }
+
+  .image {
+    width: 499px !important;
+    height: 338px !important;
+    margin-left: -71px !important;
+    margin-top: -27px !important;
+    object-fit: cover !important;
+  }
+</style>

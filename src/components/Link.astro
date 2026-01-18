@@ -1,0 +1,26 @@
+---
+const { href } = Astro.props;
+---
+
+<a href={href} class="text-5xl">
+  <slot />
+</a>
+
+<style>
+  a {
+    color: red;
+  }
+
+  .link {
+    color: blue;
+  }
+</style>
+
+<script>
+  console.log("hi from client");
+  const heading = document.querySelector("h1") as unknown as HTMLHeadingElement;
+
+  heading.addEventListener("click", () => {
+    console.log("clicked on heading");
+  });
+</script>
