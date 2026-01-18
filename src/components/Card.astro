@@ -1,26 +1,21 @@
 ---
 import { Image } from "astro:assets";
-import balloon from "../../public/imgs/balloon.jpg";
+import Author from "./Author.astro";
+import type { Props } from "../types";
+
 const { data }: Props = Astro.props;
-
-interface CardData {
-  author: {
-    name: string;
-    avatar: string;
-  };
-  title: string;
-  description: string;
-  category: string;
-  hero: string;
-  time: string;
-}
-
-interface Props {
-  data: CardData;
-}
 ---
 
-<div class="card-container">
+<article>
+  <img src={data.hero} alt={data.title} />
+  <div class="content"></div>
+  <p class="badge">{data.category}</p>
+  <p class="title">{data.title}</p>
+  <p class="description">{data.description}</p>
+  <Author name={data.author.name} avatar={data.author.avatar} time={data.time} />
+</article>
+
+<!-- <div class="card-container">
   <div
     class="w-[425px] h-[575px] rounded-br-4xl rounded-bl-sm rounded-tl-sm rounded-tr-sm bg-zinc-600 overflow-hidden"
   >
@@ -60,4 +55,4 @@ interface Props {
     margin-top: -27px !important;
     object-fit: cover !important;
   }
-</style>
+</style> -->
