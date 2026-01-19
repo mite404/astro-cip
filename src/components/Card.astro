@@ -2,36 +2,61 @@
 import { Image } from "astro:assets";
 import Author from "./Author.astro";
 import type { Props } from "../types";
+import car from "../../public/car.jpg";
+import balloon from "../../public/balloon.jpg";
+import city from "../../public/city.jpg";
 
 const { data }: Props = Astro.props;
+const heroImages: Record<string, ImageMetadata> = {
+  "car.jpg": car,
+  "balloon.jpg": balloon,
+  "city.jpg": city,
+};
+
+const badgeColors: Record<string, string> = {
+  Popular: "#F9BF8F",
+  Technology: "#E2434B",
+  Design: "#34222E",
+};
+
+const badgeColor = badgeColors[data.category] || "#F9BF8F";
+
+// const getImageMargins = (heroType: string) => {
+//   if (heroType === "balloon.jpg") {
+//     return { marginLeft: "-71px", marginTop: "-27px" };
+//   }
+//   return { marginLeft: "0", marginTop: "0" };
+// };
+
+// const margins = getImageMargins(data.hero);
 ---
 
-<article>
-  <img src={data.hero} alt={data.title} />
-  <div class="content"></div>
-  <p class="badge">{data.category}</p>
-  <p class="title">{data.title}</p>
-  <p class="description">{data.description}</p>
-  <Author name={data.author.name} avatar={data.author.avatar} time={data.time} />
-</article>
-
-<!-- <div class="card-container">
+<div class="card-container">
   <div
-    class="w-[425px] h-[575px] rounded-br-4xl rounded-bl-sm rounded-tl-sm rounded-tr-sm bg-zinc-600 overflow-hidden"
+    class="w-[425px] h-[575px] rounded-br-4xl rounded-bl-sm rounded-tl-sm rounded-tr-sm bg-[#d9d9d9] overflow-hidden"
   >
     <div class="hero-image-container">
       <Image
-        src={balloon}
-        alt=""
+        src={heroImages[data.hero]}
+        alt={data.title}
         width="499"
         height="338"
         fetchpriority={"high"}
         class="image"
       />
     </div>
-    <h1>{data.title}</h1>
-    <h3>{data.author.name}</h3>
-    <p>{data.description}</p>
+    <div class="content"></div>
+    <div
+      class="badge inline-flex items-center justify-center rounded-2xl h-5 px-4"
+      style={`background-color: ${badgeColor}`}
+    >
+      <p class="badge">
+        {data.category.toUpperCase()}
+      </p>
+    </div>
+    <h1 class="title">{data.title}</h1>
+    <p class="description">{data.description}</p>
+    <Author name={data.author.name} avatar={data.author.avatar} time={data.time} />
   </div>
 </div>
 
@@ -49,10 +74,39 @@ const { data }: Props = Astro.props;
   }
 
   .image {
-    width: 499px !important;
-    height: 338px !important;
-    margin-left: -71px !important;
-    margin-top: -27px !important;
+    width: 100% !important;
+    height: 100% !important;
     object-fit: cover !important;
   }
-</style> -->
+
+  .title {
+    color: #000;
+    font-family: "Aptos", sans-serif;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.03rem;
+  }
+
+  .badge {
+    border-radius: 1rem;
+    color: #fefefe;
+    font-family: Aptos;
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.01625rem;
+  }
+
+  .description {
+    color: #000;
+    font-family: Aptos;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.0175rem;
+  }
+</style>
