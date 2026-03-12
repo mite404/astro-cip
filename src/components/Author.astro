@@ -6,9 +6,30 @@ const { avatar, name, time } = props;
 ---
 
 <div>
-  <img src={avatar} alt={name} />
+  <img src={avatar} alt={name} class="avatar rounded-[1.25rem] w-18 h-18 aspect-square" />
   <div>
-    <p>{name}</p>
-    <p>{time}</p>
+    <h3 class="author w-[11.125rem]">{name}</h3>
+    <p class="time w-[6.8125rem] h-5">{time}</p>
   </div>
 </div>
+
+<style>
+  .author {
+    color: #34222e;
+    font-family: Iosevka;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .time {
+    color: #000;
+    font-family: Iosevka;
+    font-size: 0.75rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.015rem;
+  }
+</style>

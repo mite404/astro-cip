@@ -5,26 +5,10 @@ import Layout from "../layouts/Layout.astro";
 import data from "../data/data.json";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Components</title>
-  </head>
-  <body>
-    <h1>Astro Components</h1>
-    <Button isBordered={true} background="ffaaff">Btn Text</Button>
-  </body>
-  <style>
-    @import "https://unpkg.com/open-props";
-    @import "https://unpkg.com/open-props/normalize.min.css";
-    body {
-      display: grid;
-      place-content: center;
-      gap: 1.5rem;
-      padding: 1.5rem;
-    }
-  </style>
-</html>
+<Layout title="Astro Components">
+  <h1>Astro Components</h1>
+  <div class="flex gap-4">
+    {data.map((card) => <Card data={card} />)}
+  </div>
+  <Button isBordered={true} background="ffaaff">Btn Text</Button>
+</Layout>
